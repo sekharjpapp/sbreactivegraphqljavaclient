@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room Availability</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Check Room Availability</h1>
+
+    <form action="/availability" method="get" class="form-inline">
+        <div class="form-group mb-2 mr-3">
+            <label for="hotelId" class="sr-only">Hotel ID:</label>
+            <input type="number" id="hotelId" name="hotelId" class="form-control" placeholder="Hotel ID" required/>
+        </div>
+
+        <div class="form-group mb-2 mr-3">
+            <label for="date" class="sr-only">Date:</label>
+            <input type="date" id="date" name="date" class="form-control" required/>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Check Availability</button>
+    </form>
+
+    <!-- Display the date and rooms if available -->
+    <div th:if="${rooms != null}" class="mt-4">
+        <h2 class="mb-4">Available Rooms for <span th:text="${date}"></span></h2>
+        <ul class="list-group">
+            <li th:each="room : ${rooms}" class="list-group-item">
+                <h5 th:text="${room.roomNumber}">Room Number</h5>
+                <p><strong>Type:</strong> <span th:text="${room.roomType}">Room Type</span></p>
+                <p><strong>Description:</strong> <span th:text="${room.description}">Description</span></p>
+                <p><strong>Price:</strong> $<span th:text="${room.price}">Price</span></p>
+                <p><strong>Capacity:</strong> <span th:text="${room.capacity}">Capacity</span></p>
+                <p><strong>Amenities:</strong> <span th:text="${room.amenities}">Amenities</span></p>
+                <p><strong>Floor:</strong> <span th:text="${room.floor}">Floor</span></p>
+                <p><strong>Bed Type:</strong> <span th:text="${room.bedType}">Bed Type</span></p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
