@@ -9,15 +9,21 @@
 <div class="container mt-5">
     <h1 class="mb-4">Check Room Availability</h1>
 
-    <form action="/availability" method="get" class="form-inline">
+    <!-- Form to input hotelId, checkIn, and checkOut dates -->
+    <form action="/availability" method="get" class="form-inline mb-4">
         <div class="form-group mb-2 mr-3">
             <label for="hotelId" class="sr-only">Hotel ID:</label>
             <input type="number" id="hotelId" name="hotelId" class="form-control" placeholder="Hotel ID" required/>
         </div>
 
         <div class="form-group mb-2 mr-3">
-            <label for="date" class="sr-only">Date:</label>
-            <input type="date" id="date" name="date" class="form-control" required/>
+            <label for="checkIn" class="sr-only">Check-In Date:</label>
+            <input type="date" id="checkIn" name="checkIn" class="form-control" required/>
+        </div>
+
+        <div class="form-group mb-2 mr-3">
+            <label for="checkOut" class="sr-only">Check-Out Date:</label>
+            <input type="date" id="checkOut" name="checkOut" class="form-control" required/>
         </div>
 
         <button type="submit" class="btn btn-primary mb-2">Check Availability</button>
@@ -25,19 +31,28 @@
 
     <!-- Display the date and rooms if available -->
     <div th:if="${rooms != null}" class="mt-4">
-        <h2 class="mb-4">Available Rooms for <span th:text="${date}"></span></h2>
-        <ul class="list-group">
-            <li th:each="room : ${rooms}" class="list-group-item">
-                <h5 th:text="${room.roomNumber}">Room Number</h5>
-                <p><strong>Type:</strong> <span th:text="${room.roomType}">Room Type</span></p>
-                <p><strong>Description:</strong> <span th:text="${room.description}">Description</span></p>
-                <p><strong>Price:</strong> $<span th:text="${room.price}">Price</span></p>
-                <p><strong>Capacity:</strong> <span th:text="${room.capacity}">Capacity</span></p>
-                <p><strong>Amenities:</strong> <span th:text="${room.amenities}">Amenities</span></p>
-                <p><strong>Floor:</strong> <span th:text="${room.floor}">Floor</span></p>
-                <p><strong>Bed Type:</strong> <span th:text="${room.bedType}">Bed Type</span></p>
-            </li>
-        </ul>
+        <h2 class="mb-4">Available Rooms from <span th:text="${checkIn}"></span> to <span th:text="${checkOut}"></span></h2>
+        <div class="row">
+            <div th:each="room : ${rooms}" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title" th:text="${room.roomNumber}">Room Number</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Type:</strong> <span th:text="${room.roomType}">Room Type</span></p>
+                        <p class="card-text"><strong>Description:</strong> <span th:text="${room.description}">Description</span></p>
+                        <p class="card-text"><strong>Price:</strong> $<span th:text="${room.price}">Price</span></p>
+                        <p class="card-text"><strong>Capacity:</strong> <span th:text="${room.capacity}">Capacity</span></p>
+                        <p class="card-text"><strong>Amenities:</strong> <span th:text="${room.amenities}">Amenities</span></p>
+                        <p class="card-text"><strong>Floor:</strong> <span th:text="${room.floor}">Floor</span></p>
+                        <p class="card-text"><strong>Bed Type:</strong> <span th:text="${room.bedType}">Bed Type</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Available for the selected dates</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
