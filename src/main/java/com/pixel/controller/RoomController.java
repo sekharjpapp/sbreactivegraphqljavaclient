@@ -2,7 +2,6 @@ package com.pixel.controller;
 
 import com.pixel.service.RoomService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +33,10 @@ public class RoomController {
                     model.addAttribute("date", date); // Add date to the model
                 })
                 .thenReturn("roomAvailability"); // Thymeleaf template name
+    }
+    @GetMapping("/getRooms")
+    public String getRooms(@RequestParam("hotelId") Long hotelId, Model model) {
+        return "no rooms available";
     }
 }
 
