@@ -38,5 +38,10 @@ public class RoomController {
     public String getRooms(@RequestParam("hotelId") Long hotelId, Model model) {
         return "no rooms available";
     }
+    //hotfix - 2024-08-04
+    public static void main(String[] args) {
+        System.out.println("test");
+        System.out.println("test2");
+    }
 }
 
