@@ -41,6 +41,7 @@ public class RoomController {
     //hotfix - 2024-08-04
     public static void main(String[] args) {
         System.out.println("test");
+        System.out.println("test2");
     }
 }
 
