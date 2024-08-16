@@ -21,6 +21,7 @@ public class RoomController {
     // http://localhost:8080/rooms/availability?hotelId=1&date=2024-08-04
 
     // curl -X GET "http://localhost:8080/rooms/availability?hotelId=1&date=2024-08-04"
+    //cherry pick - 2024-08-04
 
     @GetMapping("/availability")
     public Mono<String> getAvailableRooms(@RequestParam("hotelId") Long hotelId,
